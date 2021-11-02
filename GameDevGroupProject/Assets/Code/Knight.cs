@@ -6,7 +6,6 @@ public class Knight : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform throwPoint;
 
     [Header("Variables:")]
     [SerializeField] private float moveSpeed = 5f;
@@ -15,7 +14,7 @@ public class Knight : MonoBehaviour {
     public bool isFacingUp;
     public bool isFacingDown;
     public bool isFacingLeft;
-    public bool isFacingRight;
+    public bool isFacingRight = true;
 
 
     [Header("Other Objects/Components:")]
@@ -74,7 +73,14 @@ public class Knight : MonoBehaviour {
 
     private void Shoot() {
         //Instantiate(banana, throwPoint.position, throwPoint.rotation);
-        Instantiate(banana, transform.position, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        if (isFacingLeft) {
+            Vector3 leftShooting = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.x);
+            Instantiate(banana, leftShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        }
+        else {
+            Vector3 upDownRightShooting = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.x);
+            Instantiate(banana, upDownRightShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        }
     }
 
     private void ResetShooting() {
