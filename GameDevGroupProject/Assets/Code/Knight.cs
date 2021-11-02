@@ -6,9 +6,20 @@ public class Knight : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform throwPoint;
 
     [Header("Variables:")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float shootingDelay = 0.2f;
+    [SerializeField] private bool isShooting = false;
+    public bool isFacingUp;
+    public bool isFacingDown;
+    public bool isFacingLeft;
+    public bool isFacingRight;
+
+
+    [Header("Other Objects/Components:")]
+    [SerializeField] private GameObject banana;
 
     // Animation States
     const string KNIGHT_LEFT = "Knight_walk_left";
@@ -23,52 +34,83 @@ public class Knight : MonoBehaviour {
 
     private void Update() {
         MoveKnight();
+
+        if (Input.GetButtonDown("Fire1")) {
+            if (isShooting)
+                return;
+
+            isShooting = true;
+            Shoot();
+            Invoke("ResetShooting", shootingDelay);
+        }
     }
 
     private void MoveKnight() {
-        float xPosition = transform.position.x;
-        float yPosition = transform.position.y;
-        float xMax = 1.38f;
-        float xMin = -1.3f;
-        float yMax = 0.72f;
-        float yMin = -0.72f;
-
         // Move Up
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             ChangeAnimation(KNIGHT_UP);
             transform.Translate(Vector3.up * Time.deltaTime * moveSpeed);
+            setFacingUp();
         }
         // Moving Left
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             ChangeAnimation(KNIGHT_LEFT);
             transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
+            setFacingLeft();
         }
         // Moving Down
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
             ChangeAnimation(KNIGHT_DOWN);
             transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
+            setFacingDown();
         }
         // Moving Right
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             ChangeAnimation(KNIGHT_RIGHT);
             transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+            setFacingRight();
         }
+    }
 
-        // Boundary Checking
-        if (xPosition > xMax) {
-            transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
-        } else if (xPosition < xMin) {
-            transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
-        } else if (yPosition > yMax) {
-            transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
-        } else if (yPosition < yMin) {
-            transform.Translate(Vector3.up * Time.deltaTime * moveSpeed);
-        }
+    private void Shoot() {
+        //Instantiate(banana, throwPoint.position, throwPoint.rotation);
+        Instantiate(banana, transform.position, Quaternion.Euler(new Vector3(-1, 0, 0)));
+    }
 
+    private void ResetShooting() {
+        isShooting = false;
     }
 
     /* This method changes the knights animation */
     private void ChangeAnimation(string newState) {
         animator.Play(newState);
+    }
+
+    private void setFacingUp() {
+        isFacingUp = true;
+        isFacingDown = false;
+        isFacingLeft = false;
+        isFacingRight = false;
+    }
+
+    private void setFacingDown() {
+        isFacingUp = false;
+        isFacingDown = true;
+        isFacingLeft = false;
+        isFacingRight = false;
+    }
+
+    private void setFacingLeft() {
+        isFacingUp = false;
+        isFacingDown = false;
+        isFacingLeft = true;
+        isFacingRight = false;
+    }
+
+    private void setFacingRight() {
+        isFacingUp = false;
+        isFacingDown = false;
+        isFacingLeft = false;
+        isFacingRight = true;
     }
 }
