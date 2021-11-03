@@ -1,7 +1,8 @@
 # Game Development Group Project
 
-###  Shelby, Rian, Christopher & Liam
+### Shelby, Rian, Christopher & Liam
 
+### Commits
 - 1-11-2021 Added up, dowm left and right movement to the knight, Re-arranged file structure (LR)
 
 - 2-11-2021 Added Shooting Functionality for the Knight (Shooting Left Needs to be fixed), Added colliders for the maze background (LR)
