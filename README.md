@@ -9,3 +9,5 @@
 - 2-11-2021 Fixed the Knight Shooting Left Problem (LR)
 
 - 3-11-2021 Added Start Menu, Added Game UI (Score & Lives), Added Script for Minion Enemy
+
+- 3-11-2021 Added Game Over Win and Loss Scenes, Fixed all problems after the merge conflicts
