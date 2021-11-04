@@ -12,3 +12,5 @@
 - 3-11-2021 Added Start Menu, Added Game UI (Score & Lives), Added Script for Minion Enemy (LR)
 
 - 3-11-2021 Added Game Over Win and Loss Scenes, Fixed all problems after the merge conflicts (LR)
+
+- 4-11-2021 Added Final Two Level Scenes, Added Boss Sprite and Idle Animation, Added Boss Script and Updated Other Enemy Scipts, Updated Buttons on Start Menu and Game Over Scenes to Function Correctly
