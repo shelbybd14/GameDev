@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour {
     private int score;
     private int lives = 3;
 
+    private int currentScene;
+
     [Header("Text Components:")]
     [SerializeField] private TextMeshProUGUI scoreText;
 
@@ -17,6 +19,13 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Image lifeImage;
     [SerializeField] private Image keyImage;
     [SerializeField] private Sprite keySprite;
+
+    [SerializeField] private Image transitionScene;
+
+    [SerializeField] private Sprite level1TransitionScreen;
+    [SerializeField] private Sprite level2TransitionScreen;
+    [SerializeField] private Sprite level3TransitionScreen;
+
 
     [SerializeField] private SpriteRenderer door;
     [SerializeField] private Sprite exitDoor;
@@ -31,6 +40,14 @@ public class UIManager : MonoBehaviour {
         scoreText.text = "Score: 0";
         door = GameObject.FindGameObjectWithTag("ExitDoor").GetComponent<SpriteRenderer>();
         keyImage.color = new Color(255, 255, 255, 0); // Remove the opacity on the blank image
+
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+        transitionScene.color = new Color(255, 255, 255, 0);
+        if (currentScene == 1) {
+            transitionScene.color = new Color(255, 255, 255, 100);
+            transitionScene.sprite = level1TransitionScreen;
+            Invoke("RemoveLevel1Screen", 5f);
+        }
     }
 
     private void Update() {
@@ -53,13 +70,30 @@ public class UIManager : MonoBehaviour {
         door.sprite = exitDoor;
         keyImage.color = new Color(255, 255, 255, 0);
         keyImage.sprite = null;
-        Invoke("LoadNextLevel", 3f);
+
+        Invoke("LoadTransitionScene", 1f);
+
+        Invoke("LoadNextLevel", 5f);
+    }
+
+    private void RemoveLevel1Screen() {
+        transitionScene.color = new Color(255, 255, 255, 0);
+    }
+
+    private void LoadTransitionScene() {
+        transitionScene.color = new Color(255, 255, 255, 100);
+
+        if (currentScene == 1) {
+            transitionScene.sprite = level2TransitionScreen;
+        }
+        else if (currentScene == 2) {
+            transitionScene.sprite = level3TransitionScreen;
+        }
     }
 
     /* This method is used to load the next level after the player has opened the door with the key */
     private void LoadNextLevel() {
-        //int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(currentScene + 1);
     }
 
     /* This method returns the current number of lives */
