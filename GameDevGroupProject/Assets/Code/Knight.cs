@@ -19,6 +19,7 @@ public class Knight : MonoBehaviour {
 
     [Header("Other Objects/Components:")]
     [SerializeField] private GameObject banana;
+    private UIManager uiManager;
 
     // Animation States
     const string KNIGHT_LEFT = "Knight_walk_left";
@@ -29,6 +30,8 @@ public class Knight : MonoBehaviour {
     private void Start() {
         animator = GetComponent<Animator>();
         animator.Play(KNIGHT_RIGHT); // Start off the knight facing right
+
+        uiManager = GameObject.FindObjectOfType(typeof(UIManager)) as UIManager;
     }
 
     private void Update() {
@@ -71,18 +74,20 @@ public class Knight : MonoBehaviour {
         }
     }
 
+    /* This method is used when the player shoots. An instance of the banana is instantiated in the direction the player is facing */
     private void Shoot() {
         //Instantiate(banana, throwPoint.position, throwPoint.rotation);
         if (isFacingLeft) {
-            Vector3 leftShooting = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.x);
+            Vector3 leftShooting = new Vector3(transform.position.x - 0.08f, transform.position.y, transform.position.x);
             Instantiate(banana, leftShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
         }
         else {
-            Vector3 upDownRightShooting = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.x);
+            Vector3 upDownRightShooting = new Vector3(transform.position.x + 0.08f, transform.position.y, transform.position.x);
             Instantiate(banana, upDownRightShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
         }
     }
 
+    /* This method is used to reset the shooting boolean to false */
     private void ResetShooting() {
         isShooting = false;
     }
@@ -118,5 +123,27 @@ public class Knight : MonoBehaviour {
         isFacingDown = false;
         isFacingLeft = false;
         isFacingRight = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Key") {
+            Destroy(collision.gameObject);
+            uiManager.EquipKey();
+        }
+
+        if (collision.gameObject.tag == "ExitDoor") {
+            uiManager.OpenExitDoor();
+        }
+
+        if (collision.gameObject.tag == "Apple" || collision.gameObject.tag == "FireBall") {
+            uiManager.RemoveLife();
+        }
+
+        if (collision.gameObject.tag == "IncreaseLivesPotion") {
+            if (uiManager.getLives() != 3) {
+                uiManager.IncreaseLives();
+                Destroy(collision.gameObject);
+            }
+        }
     }
 }

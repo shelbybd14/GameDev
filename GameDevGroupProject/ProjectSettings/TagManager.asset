@@ -8,6 +8,11 @@ TagManager:
   - MazeEdge
   - Banana
   - Apple
+  - BananaPeel
+  - Key
+  - ExitDoor
+  - FireBall
+  - IncreaseLivesPotion
   layers:
   - Default
   - TransparentFX
