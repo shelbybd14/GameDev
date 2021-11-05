@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionProjectile : MonoBehaviour {
+public class CrowfaceProjectile : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private new Rigidbody2D rigidbody;
-    private Minion minion;
+    private CrowFace crowFace;
 
     [Header("Variables:")]
     [SerializeField] private float throwSpeed1 = 2f;
     [SerializeField] private float throwSpeed2 = -2f;
 
     private void Start() {
-        minion = GameObject.FindObjectOfType(typeof(Minion)) as Minion;
+        crowFace = GameObject.FindObjectOfType(typeof(CrowFace)) as CrowFace;
 
-        if (minion.isFacingRight) {
+        if (crowFace.isFacingRight) {
             rigidbody.velocity = new Vector2(throwSpeed1, 0);
-        } else {
+        }
+        else {
             rigidbody.velocity = new Vector2(throwSpeed2, 0);
         }
     }

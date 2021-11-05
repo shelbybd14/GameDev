@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 354476874}
   - component: {fileID: 354476875}
   m_Layer: 0
-  m_Name: Maze Level 2
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

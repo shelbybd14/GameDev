@@ -165,12 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6931528739594364912}
+  spriteRenderer: {fileID: 6931528739594364915}
   health: 100
   moveSpeed: 0.5
   isFacingRight: 1
-  isShooting: 0
-  attackDistance: 0.001
+  attackDistance: 0.2
   followDistance: 0.1
-  knightTransform: {fileID: 0}
+  knightTransform: {fileID: 2597214460669495526, guid: d32f39c03af478f4f922b6a1d9052dd0, type: 3}
   apple: {fileID: 7057291483608090195, guid: 8379721deeca344438564b23f1ae75d9, type: 3}
   bananaPeel: {fileID: 4136154338406972765, guid: 4c2a3a2bfd579104daeaf9fc5bea5dc3, type: 3}

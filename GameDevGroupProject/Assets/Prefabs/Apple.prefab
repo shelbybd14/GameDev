@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 3407859160602778861}
-  throwSpeed1: 10
-  throwSpeed2: -10
+  throwSpeed1: 2
+  throwSpeed2: -2

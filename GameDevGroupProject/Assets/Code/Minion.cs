@@ -6,6 +6,7 @@ public class Minion : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     // Animation States
     const string MINION_UP = "WalkUp";
@@ -16,14 +17,16 @@ public class Minion : MonoBehaviour {
     [Header("Variables:")]
     [SerializeField] private int health = 100;
     [SerializeField] private float moveSpeed = 0.3f;
-    [SerializeField] private bool isFacingRight = true;
-    [SerializeField] private bool isShooting = false;
+    [SerializeField] public bool isFacingRight = true;
     private float shootingDelay = 0.5f;
     private int bananaDamage = 50;
     private int minionDeathPoints = 10;
 
     [SerializeField] private float attackDistance = 0.05f;
     [SerializeField] private float followDistance = 0.1f;
+
+    private float shootingCoolDown;
+    private float shootingCoolDownTimer;
 
     private float rightPoint;
     private float leftPoint;
@@ -42,22 +45,26 @@ public class Minion : MonoBehaviour {
 
         rightPoint = transform.position.x + 0.1f;
         leftPoint = transform.position.x - 0.1f;
+
+        shootingCoolDown = RandomNumberGenerator();
     }
 
 
     private void Update() {
-        //if (CheckAttackDistance(knightTransform.position.x, transform.position.x)) {
-        //    if (isShooting) {
-        //        return;
-        //    }
-        //    else {
-        //        Shoot();
-        //    }
-        //}
-        //else {
-        //    MoveMinion();
-        //}
-        MoveMinion();
+        if (CheckAttackDistance(knightTransform.position.x, transform.position.x)) {
+            moveSpeed = 0;
+            if (knightTransform.position.x > transform.position.x) {
+                spriteRenderer.flipX = false;
+            }
+            else if (knightTransform.position.x < transform.position.x) {
+                spriteRenderer.flipX = true;
+            }
+            Shoot();
+        }
+        else {
+            moveSpeed = 0.3f;
+            MoveMinion();
+        }
     }
 
     private void FollowPlayer() {
@@ -65,14 +72,21 @@ public class Minion : MonoBehaviour {
     }
 
     private void Shoot() {
-        Instantiate(apple, transform.position, transform.rotation);
-        isShooting = false;
+        shootingCoolDownTimer -= Time.deltaTime;
+        if (shootingCoolDownTimer > 0) {
+            return;
+        }
 
-        Invoke("ResetShooting", 2000f);
-    }
+        shootingCoolDownTimer = shootingCoolDown;
 
-    private void ResetShooting() {
-        isShooting = true;
+        if (isFacingRight) {
+            Vector3 rightShooting = new Vector3(transform.position.x + 0.08f, transform.position.y, transform.position.x);
+            Instantiate(apple, rightShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        }
+        else {
+            Vector3 leftShooting = new Vector3(transform.position.x - 0.08f, transform.position.y, transform.position.x);
+            Instantiate(apple, leftShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        }
     }
 
     private void MoveMinion() {
@@ -92,6 +106,10 @@ public class Minion : MonoBehaviour {
 
         if (transform.position.x < leftPoint)
             isFacingRight = true;
+    }
+
+    private float RandomNumberGenerator() {
+        return Random.Range(2f, 4f);
     }
 
     private bool CheckFollowDistance(float knightPosition, float minionPosition) {

@@ -137,6 +137,7 @@ public class Knight : MonoBehaviour {
 
         if (collision.gameObject.tag == "Apple" || collision.gameObject.tag == "FireBall") {
             uiManager.RemoveLife();
+            Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "IncreaseLivesPotion") {

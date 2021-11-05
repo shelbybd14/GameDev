@@ -6,6 +6,7 @@ public class CrowFace : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     // Animations States
     const string CROWFACE_IDLE = "Idle";
@@ -15,7 +16,7 @@ public class CrowFace : MonoBehaviour {
     const string CROWFACE_WALK_RIGHT = "WalkRight";
 
     [Header("Variables:")]
-    [SerializeField] private bool isFacingRight = true;
+    [SerializeField] public bool isFacingRight = true;
     [SerializeField] private float moveSpeed = 0.3f;
     [SerializeField] private float attackDistance;
     [SerializeField] private float followDistance;
@@ -23,8 +24,12 @@ public class CrowFace : MonoBehaviour {
     private int bananaDamage = 20;
     private int crowfaceDeathPoints = 50;
 
+    private float shootingCoolDown;
+    private float shootingCoolDownTimer;
+
     private float rightPoint;
     private float leftPoint;
+
 
     [Header("Other Objects/Components:")]
     [SerializeField] private Transform knightTransform;
@@ -41,11 +46,28 @@ public class CrowFace : MonoBehaviour {
 
         rightPoint = transform.position.x + 0.1f;
         leftPoint = transform.position.x - 0.1f;
+
+        shootingCoolDown = RandomNumberGenerator();
     }
 
 
     private void Update() {
-        MoveCrowface();
+        if (CheckAttackDistance(knightTransform.position.x, transform.position.x)) {
+                moveSpeed = 0;
+            if (knightTransform.position.x > transform.position.x) {
+                //moveSpeed = 0;
+                spriteRenderer.flipX = false;
+            }
+            else if (knightTransform.position.x < transform.position.x) {
+                spriteRenderer.flipX = true;
+                //Shoot();
+            }
+            Shoot();
+        }
+        else {
+            moveSpeed = 0.3f;
+            MoveCrowface();
+        }
     }
 
     /* This method is used to move the crowface between two points while it is not in attacking range */
@@ -66,6 +88,27 @@ public class CrowFace : MonoBehaviour {
 
         if (transform.position.x < leftPoint)
             isFacingRight = true;
+    }
+
+    private void Shoot() {
+        shootingCoolDownTimer -= Time.deltaTime;
+        if (shootingCoolDownTimer > 0) {
+            return;
+        }
+
+        shootingCoolDownTimer = shootingCoolDown;
+
+        if (isFacingRight) {
+            Vector3 rightShooting = new Vector3(transform.position.x + 0.08f, transform.position.y, transform.position.x);
+            Instantiate(apple, rightShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        } else {
+            Vector3 leftShooting = new Vector3(transform.position.x - 0.08f, transform.position.y, transform.position.x);
+            Instantiate(apple, leftShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
+        }
+    }
+
+    private float RandomNumberGenerator() {
+        return Random.Range(2f, 4f);
     }
 
     private bool CheckFollowDistance(float knightPosition, float crowfacePosition) {
