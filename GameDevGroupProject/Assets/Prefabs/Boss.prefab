@@ -167,6 +167,6 @@ MonoBehaviour:
   animator: {fileID: 1702561220736869409}
   health: 300
   moveSpeed: 0.3
-  knightTransform: {fileID: 0}
+  knightTransform: {fileID: 2597214460669495526, guid: d32f39c03af478f4f922b6a1d9052dd0, type: 3}
   fireBall: {fileID: 5859200398816505051, guid: e040a958bd11c384fbc72043305e229c, type: 3}
   bananaPeel: {fileID: 4136154338406972765, guid: 4c2a3a2bfd579104daeaf9fc5bea5dc3, type: 3}

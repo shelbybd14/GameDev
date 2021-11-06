@@ -9,32 +9,69 @@ public class Boss : MonoBehaviour {
     private UIManager uiManager;
 
     // Animation States
-    const string BOSS_IDLE = "boss_idle";
-    const string BOSS_RIGHT = "";
-    const string BOSS_LEFT = "";
-    const string BOSS_UP = "";
+    const string BOSS_IDLE = "Boss_idle";
+    const string BOSS_RIGHT = "Boss_right";
+    const string BOSS_LEFT = "Boss_left";
+    const string Boss_attack = "Boss_attack";
     const string BOSS_DOWN = "";
     const string BOSS_DEATH = "";
 
     [Header("Variables:")]
     [SerializeField] private int health = 300;
     [SerializeField] private float moveSpeed = 0.3f;
+    [SerializeField] private bool isMovingUp;
 
     private int bananaDamage = 10;
     private int bossDeathPoints = 500;
+
+    private float shootingCoolDown;
+    private float shootingCoolDownTimer;
+
+    private float topPoint;
+    private float bottomPoint;
 
     [Header("Other Objects/Components:")]
     [SerializeField] private Transform knightTransform;
     [SerializeField] private GameObject fireBall;
     [SerializeField] private GameObject bananaPeel;
 
-    void Start() {
+    private void Start() {
         animator = GetComponent<Animator>();
         uiManager = GameObject.FindObjectOfType(typeof(UIManager)) as UIManager;
+
+        topPoint = transform.position.y + 0.1f;
+        bottomPoint = transform.position.y - 0.1f;
+
+        shootingCoolDown = RandomNumberGenerator();
     }
 
-    void Update() {
-        
+    private void Update() {
+        Shoot();
+    }
+
+    private void MoveBoss() {
+        if (transform.position.y > topPoint) {
+            isMovingUp = false;
+        }
+        if (transform.position.y < bottomPoint) {
+            isMovingUp = true;
+        }
+    }
+
+    private void Shoot() {
+        shootingCoolDownTimer -= Time.deltaTime;
+        if (shootingCoolDownTimer > 0) {
+            return;
+        }
+
+        shootingCoolDownTimer = shootingCoolDown;
+
+        Vector3 shootingPosition = new Vector3(transform.position.x - 0.08f, transform.position.y, transform.position.x);
+        Instantiate(fireBall, shootingPosition, transform.rotation);
+    }
+
+    private float RandomNumberGenerator() {
+        return Random.Range(3f, 5f);
     }
 
     /* This method changes the bosses animation */

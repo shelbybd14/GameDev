@@ -7,6 +7,7 @@ public class CrowFace : MonoBehaviour {
     [Header("Components:")]
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private AudioSource deathSound;
 
     // Animations States
     const string CROWFACE_IDLE = "Idle";
@@ -20,7 +21,7 @@ public class CrowFace : MonoBehaviour {
     [SerializeField] private float moveSpeed = 0.3f;
     [SerializeField] private float attackDistance;
     [SerializeField] private float followDistance;
-    private int health = 100;
+    [SerializeField] private int health = 100;
     private int bananaDamage = 20;
     private int crowfaceDeathPoints = 50;
 
@@ -41,6 +42,7 @@ public class CrowFace : MonoBehaviour {
     private void Start() {
         animator = GetComponent<Animator>();
         uiManager = GameObject.FindObjectOfType(typeof(UIManager)) as UIManager;
+        deathSound = GetComponent<AudioSource>();
 
         ChangeAnimation(CROWFACE_IDLE);
 
@@ -129,6 +131,7 @@ public class CrowFace : MonoBehaviour {
     private void RemoveHealth(int amount) {
         health -= amount;
         if (health <= 0) {
+            deathSound.Play();
             KillCrowface();
         }
     }

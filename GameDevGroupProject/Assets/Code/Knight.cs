@@ -6,6 +6,8 @@ public class Knight : MonoBehaviour {
 
     [Header("Components:")]
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource throwSound;
+    [SerializeField] private AudioSource keyPickup;
 
     [Header("Variables:")]
     [SerializeField] private float moveSpeed = 5f;
@@ -32,6 +34,9 @@ public class Knight : MonoBehaviour {
         animator.Play(KNIGHT_RIGHT); // Start off the knight facing right
 
         uiManager = GameObject.FindObjectOfType(typeof(UIManager)) as UIManager;
+
+        throwSound = GetComponent<AudioSource>();
+        keyPickup = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -76,7 +81,7 @@ public class Knight : MonoBehaviour {
 
     /* This method is used when the player shoots. An instance of the banana is instantiated in the direction the player is facing */
     private void Shoot() {
-        //Instantiate(banana, throwPoint.position, throwPoint.rotation);
+        throwSound.Play();
         if (isFacingLeft) {
             Vector3 leftShooting = new Vector3(transform.position.x - 0.08f, transform.position.y, transform.position.x);
             Instantiate(banana, leftShooting, Quaternion.Euler(new Vector3(-1, 0, 0)));
@@ -128,6 +133,7 @@ public class Knight : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Key") {
             Destroy(collision.gameObject);
+            keyPickup.Play();
             uiManager.EquipKey();
         }
 

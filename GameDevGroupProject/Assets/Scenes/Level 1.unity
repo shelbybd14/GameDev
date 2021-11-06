@@ -2632,6 +2632,10 @@ PrefabInstance:
       propertyPath: knightTransform
       value: 
       objectReference: {fileID: 381052181}
+    - target: {fileID: 3636528609168699946, guid: 9c27ff7e5ec471947a49fa91ba542172, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c27ff7e5ec471947a49fa91ba542172, type: 3}
 --- !u!1001 &2597214460355603955
@@ -2651,11 +2655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2597214460669495526, guid: d32f39c03af478f4f922b6a1d9052dd0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.219
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2597214460669495526, guid: d32f39c03af478f4f922b6a1d9052dd0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.697
+      value: 0.238
       objectReference: {fileID: 0}
     - target: {fileID: 2597214460669495526, guid: d32f39c03af478f4f922b6a1d9052dd0, type: 3}
       propertyPath: m_LocalPosition.z

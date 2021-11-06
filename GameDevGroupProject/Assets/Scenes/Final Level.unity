@@ -199,7 +199,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70511683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -331,11 +331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2262998
+      value: -1.384
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.706896
+      value: 0.495
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1234,11 +1234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.329378
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.61568385
+      value: 0.482
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1483,11 +1483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68916017
+      value: 0.304
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7879737
+      value: -0.793
       objectReference: {fileID: 0}
     - target: {fileID: 872225589235788750, guid: 5930c7634c5271f4db6110ba9e593997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1907,7 +1907,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5011206, y: -0.25514385}
+  m_Offset: {x: -1.5128584, y: -0.25514388}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1918,7 +1918,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12265062, y: 1.981554}
+  m_Size: {x: 0.09917498, y: 1.981554}
   m_EdgeRadius: 0
 --- !u!61 &1589991315
 BoxCollider2D:
@@ -1933,7 +1933,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2669357, y: -0.104551554}
+  m_Offset: {x: 0.9599187, y: -0.104551554}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1944,7 +1944,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13745809, y: 2.0818186}
+  m_Size: {x: 0.121002555, y: 2.0818186}
   m_EdgeRadius: 0
 --- !u!61 &1589991316
 BoxCollider2D:
@@ -1959,7 +1959,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14867687, y: 0.7579392}
+  m_Offset: {x: -0.14867687, y: 0.5407349}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1970,7 +1970,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0116596, y: 0.11326814}
+  m_Size: {x: 3.0116596, y: 0.08364901}
   m_EdgeRadius: 0
 --- !u!61 &1589991317
 BoxCollider2D:
@@ -1985,7 +1985,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07855916, y: -1.0725543}
+  m_Offset: {x: -0.07855916, y: -1.0826154}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1996,7 +1996,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1526198, y: 0.12035549}
+  m_Size: {x: 3.1526198, y: 0.100233555}
   m_EdgeRadius: 0
 --- !u!1 &1665786774
 GameObject:
@@ -2127,11 +2127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1702561220736869406, guid: 4b432c4af7a7e0f4eabf1c1defd84a01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5626919
+      value: 0.813
       objectReference: {fileID: 0}
     - target: {fileID: 1702561220736869406, guid: 4b432c4af7a7e0f4eabf1c1defd84a01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04
+      value: -0.133
       objectReference: {fileID: 0}
     - target: {fileID: 1702561220736869406, guid: 4b432c4af7a7e0f4eabf1c1defd84a01, type: 3}
       propertyPath: m_LocalPosition.z
