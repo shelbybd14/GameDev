@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -211,6 +212,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Red Gem Bullet Sprite Sheet_2: -6550820982149343048
+      Red Gem Bullet Sprite Sheet_1: -2107573976342494053
+      Red Gem Bullet Sprite Sheet_3: -3414790600953205673
+      Red Gem Bullet Sprite Sheet_0: -8131236311617936479
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
