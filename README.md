@@ -16,3 +16,5 @@
 - 4-11-2021 Added Final Two Level Scenes, Added Boss Sprite and Idle Animation, Added Boss Script and Updated Other Enemy Scipts, Updated Buttons on Start Menu and Game Over Scenes to Function Correctly (LR)
 
 - 6-11-2021 Added Shooting for the Boss, Added Throwing Sound Effect for the Knight, Added Comments to Uncommented Code (LR)
+
+- 7-11-2021 Added Songs to Scenes, Added more Sound Effects
