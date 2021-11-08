@@ -19,6 +19,6 @@
 
 - 7-11-2021 Added Songs to Scenes, Added more Sound Effects
 
-- 7-11-2021 Fixed UI Overlay & Transition Scenes
+- 7-11-2021 Fixed UI Overlay & Transition Scenes (LR)
 
 - 8-11-2021 Fixed Final Level with a Lava Divider in the Middle of the Arena to try make it more challenging, Added Comments to Code (LR)
