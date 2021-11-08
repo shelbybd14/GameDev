@@ -46,10 +46,20 @@ public class Boss : MonoBehaviour {
     }
 
     private void Update() {
+        MoveBoss();
         Shoot();
     }
 
     private void MoveBoss() {
+        if (isMovingUp) {
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            isMovingUp = true;
+        }
+        else {
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            isMovingUp = false;
+        }
+
         if (transform.position.y > topPoint) {
             isMovingUp = false;
         }
@@ -92,6 +102,7 @@ public class Boss : MonoBehaviour {
     private void KillBoss() {
         Destroy(gameObject);
         uiManager.IncreaseScore(bossDeathPoints);
+        uiManager.WinGame();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

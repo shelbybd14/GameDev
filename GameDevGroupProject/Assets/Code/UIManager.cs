@@ -142,4 +142,8 @@ public class UIManager : MonoBehaviour {
     private void EndGame() {
         SceneManager.LoadScene("Game Over Lose");
     }
+
+    public void WinGame() {
+        SceneManager.LoadScene("Game Over Win");
+    }
 }

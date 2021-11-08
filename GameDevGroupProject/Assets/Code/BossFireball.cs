@@ -19,10 +19,11 @@ public class BossFireball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "MazeEdge") {
-            //Destroy(gameObject);
-            spriteRenderer.flipX = true;
-            speed = 3f;
-            rigidbody.velocity = new Vector2(speed, 0);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Banana") {
+            Destroy(collision.gameObject);
         }
     }
 }
