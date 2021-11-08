@@ -146,6 +146,10 @@ public class Knight : MonoBehaviour {
             Destroy(collision.gameObject);
         }
 
+        if (collision.gameObject.tag == "Minion" || collision.gameObject.tag == "CrowFace") {
+            uiManager.RemoveLife();
+        }
+
         if (collision.gameObject.tag == "IncreaseLivesPotion") {
             if (uiManager.getLives() != 3) {
                 uiManager.IncreaseLives();

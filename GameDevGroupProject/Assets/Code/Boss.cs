@@ -13,8 +13,7 @@ public class Boss : MonoBehaviour {
     const string BOSS_RIGHT = "Boss_right";
     const string BOSS_LEFT = "Boss_left";
     const string Boss_attack = "Boss_attack";
-    const string BOSS_DOWN = "";
-    const string BOSS_DEATH = "";
+
 
     [Header("Variables:")]
     [SerializeField] private int health = 300;
@@ -50,6 +49,7 @@ public class Boss : MonoBehaviour {
         Shoot();
     }
 
+    /* This method is used to handle the bosses movement */
     private void MoveBoss() {
         if (isMovingUp) {
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
@@ -67,7 +67,8 @@ public class Boss : MonoBehaviour {
             isMovingUp = true;
         }
     }
-
+    
+    /* This method is used to handle the bosses shooting */
     private void Shoot() {
         shootingCoolDownTimer -= Time.deltaTime;
         if (shootingCoolDownTimer > 0) {
@@ -81,7 +82,7 @@ public class Boss : MonoBehaviour {
     }
 
     private float RandomNumberGenerator() {
-        return Random.Range(3f, 5f);
+        return Random.Range(.8f, 1.5f);
     }
 
     /* This method changes the bosses animation */
@@ -115,7 +116,7 @@ public class Boss : MonoBehaviour {
 
     /* This method creates an instance of the banana peel when the enemy gets hit with a banana and then destroys it after 1 second */
     private void CreateBananaPeel() {
-        Vector3 position = new Vector3(transform.position.x + 0.05f, transform.position.y, transform.position.z);
+        Vector3 position = new Vector3(transform.position.x - 0.05f, transform.position.y, transform.position.z);
         Instantiate(bananaPeel, position, transform.rotation);
         Destroy(GameObject.FindGameObjectWithTag("BananaPeel"), 1f);
     }

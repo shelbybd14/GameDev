@@ -23,7 +23,7 @@ public class MinionProjectile : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "MazeEdge") {
+        if (collision.gameObject.tag == "MazeEdge" || collision.gameObject.tag == "ExitDoor") {
             Destroy(gameObject);
         }
     }

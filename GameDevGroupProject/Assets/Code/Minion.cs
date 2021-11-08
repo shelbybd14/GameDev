@@ -18,12 +18,11 @@ public class Minion : MonoBehaviour {
     [SerializeField] private int health = 100;
     [SerializeField] private float moveSpeed = 0.3f;
     [SerializeField] public bool isFacingRight = true;
-    private float shootingDelay = 0.5f;
     private int bananaDamage = 50;
     private int minionDeathPoints = 10;
 
     [SerializeField] private float attackDistance = 0.05f;
-    [SerializeField] private float followDistance = 0.1f;
+    //[SerializeField] private float followDistance = 0.1f;
 
     private float shootingCoolDown;
     private float shootingCoolDownTimer;
@@ -67,10 +66,7 @@ public class Minion : MonoBehaviour {
         }
     }
 
-    private void FollowPlayer() {
-        
-    }
-
+    /* This method is used to handle the minions shooting */
     private void Shoot() {
         shootingCoolDownTimer -= Time.deltaTime;
         if (shootingCoolDownTimer > 0) {
@@ -89,6 +85,7 @@ public class Minion : MonoBehaviour {
         }
     }
 
+    /* This method is used to handle the minions movement */
     private void MoveMinion() {
         if (isFacingRight) {
             ChangeAnimation(MINION_RIGHT);
@@ -109,16 +106,10 @@ public class Minion : MonoBehaviour {
     }
 
     private float RandomNumberGenerator() {
-        return Random.Range(2f, 4f);
+        return Random.Range(1.5f, 3f);
     }
 
-    private bool CheckFollowDistance(float knightPosition, float minionPosition) {
-        if (Mathf.Abs(knightPosition - minionPosition) < followDistance)
-            return true;
-
-        return false;
-    }
-
+    /* This method is used to check if the player is within attacking distance of the minion */
     private bool CheckAttackDistance(float knightPosition, float minionPosition) {
         if (Mathf.Abs(knightPosition - minionPosition) < attackDistance)
             return true;
@@ -126,6 +117,7 @@ public class Minion : MonoBehaviour {
         return false;
     }
 
+    /* This method removes a life from the minion when it gets hit */
     private void RemoveHealth(int amount) {
         health -= amount;
         if (health <= 0) {
@@ -133,11 +125,13 @@ public class Minion : MonoBehaviour {
         }
     }
 
+    /* This method is used to destroy the minion when it has no health left */
     private void KillMinion() {
         Destroy(gameObject);
         uiManager.IncreaseScore(minionDeathPoints);
     }
 
+    /* This method is used to change the minions animation */
     private void ChangeAnimation(string newState) {
         animator.Play(newState);
     }
@@ -150,6 +144,7 @@ public class Minion : MonoBehaviour {
         }
     }
 
+    /* This method creates an instance of the banana peel prefab when the minion gets hits and then destroys it one second later */
     private void CreateBananaPeel() {
         Vector3 position = new Vector3(transform.position.x + 0.05f, transform.position.y, transform.position.z);
         Instantiate(bananaPeel, position, transform.rotation);

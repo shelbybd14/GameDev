@@ -68,8 +68,8 @@ public class UIManager : MonoBehaviour {
     /* This method is used when the player collides with the door while the key is equipped */
     public void OpenExitDoor() {
         door.sprite = exitDoor;
-        keyImage.color = new Color(255, 255, 255, 0);
-        keyImage.sprite = null;
+        keyImage.color = new Color(255, 255, 255, 0); // Removes opacity from image so it disappears
+        keyImage.sprite = null; // Removes image
 
         Invoke("LoadTransitionScene", 1f);
 
@@ -138,11 +138,12 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    /* This method is called when the play has no lives left and the Game Over Lose Scene is set to active */
+    /* This method is called when the player has no lives left and the Game Over Lose Scene is set to active */
     private void EndGame() {
         SceneManager.LoadScene("Game Over Lose");
     }
 
+    /* This method is called when the player kills the boss in the final level */
     public void WinGame() {
         SceneManager.LoadScene("Game Over Win");
     }

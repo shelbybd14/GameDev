@@ -110,7 +110,7 @@ public class CrowFace : MonoBehaviour {
     }
 
     private float RandomNumberGenerator() {
-        return Random.Range(2f, 4f);
+        return Random.Range(1f, 2.5f);
     }
 
     private bool CheckFollowDistance(float knightPosition, float crowfacePosition) {
